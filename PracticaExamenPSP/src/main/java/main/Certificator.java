@@ -20,7 +20,23 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 public class Certificator implements Runnable {
+	
+	// Creación de una clave privada:
+	// Openssl genrsa -out nombrePrivada.pem -aes128 3072
+	
+	// Sacar una clave pública de una clave privada:
+	// Openssl rsa -in nombrePrivada.pem -pubout -out nombrePublica.pem
 
+	// Generar una solicitud de firma a partir de una clave privada
+	// Openssl req -new -key nombrePrivada.pem -out cert.csr
+	
+	// Crear una autoridad de certificacion
+	// Openssl req -newkey rsa:3072 -x509 -keyout cakey -out ca.crt -days 3650 -nodes
+	
+	// Firmar una solicitud de firma
+	// Openssl x509 -req -in micert.csr -days 3650 -CA ca.crt -CAkey cakey -set_serial 01 -out micert.crt
+	
+	
 	Socket client;
 	DataOutputStream out;
 
